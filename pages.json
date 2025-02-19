@@ -1,0 +1,25 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "诗词歌赋",
+				"backgroundColor": "#d4d2be"
+				
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "诗词歌赋",
+		"navigationBarBackgroundColor": "#d4d2be",
+		"backgroundColor": "#d4d2be"
+	},
+	"uniIdRouter": {},
+	 "easycom": {
+	    "autoscan": true,
+	    "custom": {
+	      "^u-(.*)": "uview-plus/components/u-$1/u-$1.vue"
+	    }
+	  }
+}

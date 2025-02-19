@@ -1,0 +1,14 @@
+{
+  "name": "miniprogram-ts-quickstart",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "pinyin-pro": "^3.26.0",
+    "uview-plus": "^3.3.69"
+  },
+  "devDependencies": {}
+}
