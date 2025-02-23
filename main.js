@@ -16,9 +16,13 @@ import {
 	createSSRApp
 } from 'vue'
 import uviewPlus from 'uview-plus'
+import { createPinia } from 'pinia';
 export function createApp() {
 	const app = createSSRApp(App)
 	app.use(uviewPlus)
+	// 创建 Pinia 实例
+	const pinia = createPinia();
+	app.use(pinia);
 	return {
 		app
 	}

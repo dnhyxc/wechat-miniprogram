@@ -3,12 +3,37 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "诗词歌赋",
+				"navigationBarTitleText": "基础诗词",
 				"backgroundColor": "#d4d2be"
-				
+			}
+		},
+		{
+			"path": "pages/senior/index",
+			"style": {
+				"navigationBarTitleText": "进阶诗词"
 			}
 		}
 	],
+	"tabBar": {
+		"backgroundColor": "#d4d2be", // 设置背景颜色
+		"color": "#999999", // 设置图标颜色
+		"selectedColor": "#007aff", // 设置选中的图标颜色
+		"borderStyle": "white", // 设置边框颜色
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "基础诗词",
+				"iconPath": "static/poem-base.png",
+				"selectedIconPath": "static/poem-base-active.png" // 选中后的图标
+			},
+			{
+				"pagePath": "pages/senior/index",
+				"text": "进阶诗词",
+				"iconPath": "static/poem-senior.png",
+				"selectedIconPath": "static/poem-senior-active.png" // 选中后的图标
+			}
+		]
+		// "custom": true
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "诗词歌赋",
@@ -16,10 +41,10 @@
 		"backgroundColor": "#d4d2be"
 	},
 	"uniIdRouter": {},
-	 "easycom": {
-	    "autoscan": true,
-	    "custom": {
-	      "^u-(.*)": "uview-plus/components/u-$1/u-$1.vue"
-	    }
-	  }
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^u-(.*)": "uview-plus/components/u-$1/u-$1.vue"
+		}
+	}
 }
