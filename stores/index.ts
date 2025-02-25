@@ -1,24 +1,27 @@
 import { defineStore } from 'pinia';
 
 interface IProps {
+	currentAudio : WechatMiniprogram.InnerAudioContext | null
 	audios : WechatMiniprogram.InnerAudioContext[]
 	audioKeys : string[],
 	activeName : string,
 	isAudioReady : boolean,
 	loadedUrls : string[],
-	isLoadedUrl : boolean,
 }
 
 export const usePoemStore = defineStore('poem', {
 	state: () : IProps => ({
+		currentAudio: null,
 		audios: [],
 		audioKeys: [],
 		activeName: '',
 		isAudioReady: false,
 		loadedUrls: [],
-		isLoadedUrl: false
 	}),
 	actions: {
+		setCurrentAudio(audio : WechatMiniprogram.InnerAudioContext | null) {
+			this.currentAudio = audio
+		},
 		setAudios(audio : WechatMiniprogram.InnerAudioContext) {
 			this.audios = [audio, ...this.audios]
 		},
@@ -44,9 +47,6 @@ export const usePoemStore = defineStore('poem', {
 		setLoadedUrls(url : string) {
 			this.loadedUrls.push(url)
 		},
-		setIsLoadedUrl(value : boolean) {
-			this.isLoadedUrl = value
-		}
 	},
 	getters: {
 		// audios: (state) => state.audios,

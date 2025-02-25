@@ -54,7 +54,7 @@ export const SENIOR_LIST = [
 		],
 		desc: '《卜算子·咏梅》是一首咏物词。这首词上阕着重描绘了梅花傲然挺立、迎寒绽放的美丽身姿，展现出梅花的美丽、积极与坚贞。下阕则深入描绘了梅花的精神内涵，展现其坚强不屈、不畏严寒的品质以及谦逊的风格和坚定的信心。全词用逆向思维展开，巧妙地融合了象征、拟人、衬托、比喻、夸张、对仗、顶真等多种修辞手法，完美达到了托物言志的目的。全词塑造了梅花俊美而坚韧不拔的形象，鼓励人们要有威武不屈的品质和革命到底的乐观主义精神。通过对梅花的描绘，词人赞美了不屈不挠、乐观向上的精神，激励人们在面对困难时要坚守信念，永不言败。',
 		link: 'https://www.gushiwen.cn/shiwenv_e8c610c2308b.aspx',
-		audio: 'https://ziyuan.guwendao.net/song/chenlang/6e4b9596b2f3.mp3',
+		audio: 'https://ziyuan.guwendao.net/song/jiangweiwei/e8c610c2308b.mp3',
 		descAudio: 'https://ziyuan.guwendao.net/machine/shangxi/50869/ok.mp3'
 	},
 	{

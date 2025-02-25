@@ -6,80 +6,71 @@ const poemStore = usePoemStore()
 const audio = wx.createInnerAudioContext(); // 创建音频上下文
 
 export const playAudio = (url : string, name ?: string) => {
-	poemStore.setIsLoadedUrl(true)
-	if (poemStore.audios?.length) {
-		toRaw(poemStore.audios).forEach((i : any) => {
-			i.currentTime = 0;
-			i.pause()
-		})
-		poemStore.clearAudios()
-		poemStore.clearAudioKeys()
+	if (toRaw(poemStore.currentAudio)) {
+		toRaw(poemStore.currentAudio)!.currentTime = 0
+		toRaw(poemStore.currentAudio)?.pause()
 	}
 	poemStore.setActiveName(name || '')
 	audio.src = url;
+	poemStore.setCurrentAudio(null)
+	poemStore.clearAudioKeys()
+
 	// 监听音频加载完成事件
 	if (poemStore.loadedUrls.includes(url)) {
 		audio.play();
-		poemStore.setAudios(audio);
-		poemStore.setIsLoadedUrl(false)
+		poemStore.setCurrentAudio(audio)
 	} else {
 		audio.onCanplay(() => {
-			poemStore.setIsLoadedUrl(false)
 			poemStore.setIsAudioReady(true)
 			poemStore.setLoadedUrls(url)
 			if (poemStore.isAudioReady && audio.paused) {
 				audio.play();
-				poemStore.setAudios(audio);
+				poemStore.setCurrentAudio(audio)
 			}
 		});
 	}
+
 	audio.onPause(() => {
 		poemStore.setIsAudioReady(false)
 	})
 	// 监听音频加载错误事件
 	audio.onError(() => {
-		poemStore.clearAudios()
+		poemStore.setCurrentAudio(null)
 	});
 };
 
 export const stopAudio = (name ?: string) => {
-	if (poemStore.audios?.length) {
-		toRaw(poemStore.audios).forEach((i : any) => {
-			i.currentTime = 0;
-			i.pause()
-		})
-		poemStore.clearAudios()
-		poemStore.clearAudioKeys()
-		poemStore.setActiveName(name || '')
+	if (toRaw(poemStore.currentAudio)) {
+		toRaw(poemStore.currentAudio)!.currentTime = 0
+		toRaw(poemStore.currentAudio)?.pause()
 	}
+	poemStore.setCurrentAudio(null)
+	poemStore.clearAudioKeys()
+	poemStore.setActiveName(name || '')
 };
 
 export const onActiveDescAudio = (url : string, key : string) => {
-	if (poemStore.audios?.length) {
-		toRaw(poemStore.audios).forEach((i : any) => {
-			i.currentTime = 0;
-			i.pause()
-		})
-		poemStore.clearAudios()
-		poemStore.setActiveName('')
+	if (toRaw(poemStore.currentAudio)) {
+		toRaw(poemStore.currentAudio)!.currentTime = 0
+		toRaw(poemStore.currentAudio)?.pause()
 	}
+	poemStore.setActiveName('')
+	poemStore.setCurrentAudio(null)
+
 	if (!(poemStore.audioKeys as string[]).includes(key)) {
-		poemStore.setIsLoadedUrl(true)
 		audio.src = url;
 		poemStore.setAudioKeys(key)
 		// 监听音频加载完成事件
 		if (poemStore.loadedUrls.includes(url)) {
-			poemStore.setIsLoadedUrl(false)
-			audio.play();
-			poemStore.setAudios(audio);
+			audio.play()
+			poemStore.setCurrentAudio(audio)
 		} else {
 			audio.onCanplay(() => {
-				poemStore.setIsLoadedUrl(false)
 				poemStore.setIsAudioReady(true)
 				poemStore.setLoadedUrls(url)
 				if (poemStore.isAudioReady && audio.paused) {
 					audio.play();
-					poemStore.setAudios(audio);
+					poemStore.setCurrentAudio(audio)
 				}
 			});
 		}
@@ -88,7 +79,8 @@ export const onActiveDescAudio = (url : string, key : string) => {
 		})
 		// 监听音频加载错误事件
 		audio.onError(() => {
-			poemStore.clearAudios()
+			// poemStore.clearAudios()
+			poemStore.setCurrentAudio(null)
 			const keys = poemStore.audioKeys.filter(i => i !== key)
 			poemStore.setAudioKeys(keys)
 		});

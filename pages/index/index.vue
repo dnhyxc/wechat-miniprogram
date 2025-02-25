@@ -9,8 +9,7 @@
 				<div v-for="(i, index) in item.poem" :key="index" class="text" v-html="i" />
 			</div>
 			<div class="actions">
-				<u-button type="primary" :loading="poemStore.isLoadedUrl" loadingText="音频加载中"
-					@click="playAudio(item.audio, item.name)">
+				<u-button type="primary" @click="playAudio(item.audio, item.name)">
 					{{toRaw(poemStore.activeName) === item.name ? '正在朗读...' : '开始朗读'}}
 				</u-button>
 				<u-button type="warning" @click="stopAudio">停止朗读</u-button>
